@@ -1,0 +1,12 @@
+{
+  "name": "tts-plugin",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "dependencies": {
+    "edge-tts": "^2.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^18.11.9"
+  }
+}
