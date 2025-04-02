@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
-import { EdgeTTS } from "edge-tts";
 import * as fs from "fs";
 import * as path from "path";
+import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
 
-// Express handler
 export default async (req: Request, res: Response) => {
   const { text } = req.query; // ?text=Hello
 
@@ -12,11 +11,14 @@ export default async (req: Request, res: Response) => {
   }
 
   try {
-    const tts = new EdgeTTS({ voice: "en-US-GuyNeural" });
+    // Initialize TTS with a voice
+    const tts = new MsEdgeTTS();
+    await tts.setMetadata("en-US-GuyNeural", OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3);
+
     const outputFile = path.join(__dirname, "output.mp3");
 
-    // Generate audio
-    await tts.synthesize(text, outputFile);
+    // Generate audio and save to file
+    await tts.toFile(outputFile, text);
 
     // Send audio file
     res.setHeader("Content-Type", "audio/mpeg");
