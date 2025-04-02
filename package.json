@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.ts",
   "dependencies": {
-    "edge-tts": "^2.0.2"
+   "@andresaya/edge-tts": "^1.2.4"
+
+
   },
   "devDependencies": {
     "typescript": "^5.0.0",
